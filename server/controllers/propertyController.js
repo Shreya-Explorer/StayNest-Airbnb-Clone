@@ -5,6 +5,8 @@ const Property = require("../models/Property");
 // Create Property
 // ======================
 const createProperty = async (req, res) => {
+  console.log("BODY:", req.body);
+  console.log("FILES:", req.files);
   try {
     const {
       title,
@@ -47,13 +49,16 @@ const createProperty = async (req, res) => {
       property,
     });
   } catch (error) {
-    console.log(error);
+  console.error("===== ERROR =====");
+  console.error(error);
+  console.error(error.message);
+  console.error(error.stack);
 
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
+  res.status(500).json({
+    success: false,
+    message: error.message,
+  });
+}
 };
 
 // ======================
